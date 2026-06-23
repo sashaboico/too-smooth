@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Models & artifacts
+*.joblib
+*.pkl
+
+# Data — keep the folders, ignore the contents (may contain sensitive samples)
+data/raw/*
+data/processed/*
+data/labeled/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/labeled/.gitkeep
+
+# Tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
