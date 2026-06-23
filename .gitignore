@@ -22,6 +22,8 @@ data/labeled/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/labeled/.gitkeep
+# Keep provenance docs tracked, but never the data itself
+!data/raw/SOURCE.md
 
 # Tooling
 .pytest_cache/
