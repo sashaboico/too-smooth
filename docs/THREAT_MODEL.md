@@ -3,6 +3,20 @@
 > Skeleton — to be expanded. This file captures *who* we defend against, *what* they
 > can do, and *what TooSmooth assumes*.
 
+## Traditional vs AI-Driven Phishing
+
+| Aspect | Traditional Phishing | AI-Driven Phishing |
+|---|---|---|
+| Message Quality | Generic, grammatical errors | Mimics real communication, no errors |
+| Personalisation | Broad, untargeted | Hyper-personalised per victim |
+| Scale | Manual, limited | High-volume, automated |
+| Targeting | Indiscriminate | Strategic, AI-driven analysis |
+| Detection | Easier — errors are signals | Harder — no surface errors to catch |
+
+*Source: Jabir et al. (2025), adapted.*
+
+This table defines the detection gap TooSmooth is built to close.
+
 ## Adversary
 
 - **Goal:** trick a recipient into a harmful action (credential entry, payment,

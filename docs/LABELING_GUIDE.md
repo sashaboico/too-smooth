@@ -4,6 +4,11 @@ This guide defines the 3-class schema used to label messages in `data/labeled/`.
 Consistency between labelers matters more than any single call — when in doubt,
 follow the decision tree and record your reasoning in the sample's `notes` field.
 
+The six features selected for extraction align with manipulation patterns identified
+in peer-reviewed literature on human factors in AI-driven phishing (Jabir et al., 2025),
+specifically: urgency exploitation, authority impersonation, emotional pressure, and
+hyper-personalization as the primary attack vectors GenAI amplifies over traditional phishing.
+
 ## The core idea
 
 Every label answers two questions, **in this order**:
