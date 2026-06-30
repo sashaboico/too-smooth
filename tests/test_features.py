@@ -1,9 +1,9 @@
 """Tests for the FeatureExtractor.
 
-Contract tests assert method presence, score range, and output shape so they stay
-meaningful as stubs get implemented. Day 3 adds behavioral tests for the first three
-features: each has one obviously high-scoring and one obviously low-scoring example,
-with hardcoded strings. The three Day 4 features are still stubs and asserted to raise.
+Contract tests assert method presence, score range, and output shape. Behavioral
+tests give each of the six features one obviously high-scoring and one obviously
+low-scoring example with hardcoded strings, plus an integration test over the full
+explain_all / overall_risk_score aggregation.
 """
 
 import pytest
@@ -19,16 +19,7 @@ FEATURE_METHODS = [
     "manipulation_arc_indicators",
 ]
 
-IMPLEMENTED = [
-    "urgency_signal_density",
-    "personalization_depth_score",
-    "authority_spoofing_signals",
-]
-STUBBED = [
-    "emotional_pressure_index",
-    "syntactic_smoothness",
-    "manipulation_arc_indicators",
-]
+IMPLEMENTED = list(FEATURE_METHODS)  # all six implemented as of Day 4
 
 
 @pytest.fixture(scope="module")
@@ -52,12 +43,6 @@ def test_implemented_feature_returns_float_in_unit_range(fx, name):
     score = getattr(fx, name)("Hi Sasha, your account will be locked in 24 hours.")
     assert isinstance(score, float)
     assert 0.0 <= score <= 1.0
-
-
-@pytest.mark.parametrize("name", STUBBED)
-def test_stubbed_feature_still_raises(fx, name):
-    with pytest.raises(NotImplementedError):
-        getattr(fx, name)("anything")
 
 
 # --- Feature 1: urgency_signal_density ------------------------------------
@@ -117,12 +102,96 @@ def test_authority_low(fx):
     assert fx.authority_spoofing_signals(text) < 0.3
 
 
-# --- explain() ------------------------------------------------------------
+# --- Feature 4: emotional_pressure_index ----------------------------------
+
+def test_emotional_high(fx):
+    text = (
+        "Final notice: your account has been suspended and you now face legal action, "
+        "heavy penalties, and immediate termination. But congratulations — you have been "
+        "selected as an exclusive winner of a cash reward. Claim your prize immediately "
+        "before it's too late."
+    )
+    assert fx.emotional_pressure_index(text) > 0.6
+
+
+def test_emotional_low(fx):
+    text = (
+        "Thanks for sending the agenda. I've added a couple of items and shared the "
+        "document with the team for review before our call."
+    )
+    assert fx.emotional_pressure_index(text) < 0.3
+
+
+# --- Feature 5: syntactic_smoothness --------------------------------------
+
+def test_smoothness_high(fx):
+    # Uniform, evenly-sized, fluent sentences — machine-regular rhythm.
+    text = (
+        "Our team has reviewed your recent account activity in detail. We identified a "
+        "few items that require your attention today. Please review the summary we "
+        "prepared for your records. We remain available to assist you at any time."
+    )
+    assert fx.syntactic_smoothness(text) > 0.6
+
+
+def test_smoothness_low(fx):
+    # Bursty human rhythm: very short lines next to a long rambling one.
+    text = (
+        "Hey!! So I tried to log in yesterday but it kept failing for some reason and I "
+        "got really frustrated after like the tenth attempt honestly. Weird. Can you "
+        "help? Thanks a million."
+    )
+    assert fx.syntactic_smoothness(text) < 0.3
+
+
+# --- Feature 6: manipulation_arc_indicators -------------------------------
+
+def test_arc_high(fx):
+    text = (
+        "Hello, this is the IT support team contacting you about your account. We noticed "
+        "some unusual login activity on your profile. For your security, your access will "
+        "be suspended within 24 hours unless action is taken. Please verify your identity "
+        "now by clicking the link below."
+    )
+    assert fx.manipulation_arc_indicators(text) > 0.6
+
+
+def test_arc_low(fx):
+    text = "Can you send me the Q3 report when you have a chance? Thanks."
+    assert fx.manipulation_arc_indicators(text) < 0.3
+
+
+# --- explain() / explain_all() / overall_risk_score() ---------------------
 
 def test_explain_returns_scores_and_reasons(fx):
     out = fx.explain("Hi Sasha, your account will be suspended unless you verify your identity now.")
-    assert set(out) == set(IMPLEMENTED)
+    assert set(out) == {
+        "urgency_signal_density",
+        "personalization_depth_score",
+        "authority_spoofing_signals",
+    }
     for name, detail in out.items():
         assert isinstance(detail["score"], float)
         assert 0.0 <= detail["score"] <= 1.0
         assert isinstance(detail["reason"], str) and detail["reason"]
+
+
+def test_explain_all_shape_and_risk_levels(fx):
+    out = fx.explain_all("Verify your identity now or your account will be suspended.")
+    assert set(out) == set(FEATURE_METHODS)
+    for detail in out.values():
+        assert 0.0 <= detail["score"] <= 1.0
+        assert isinstance(detail["reason"], str) and detail["reason"]
+        assert detail["risk_level"] in {"low", "medium", "high"}
+
+
+def test_known_ai_phishing_scores_high(fx):
+    text = (
+        "Dear Sasha, this is the Microsoft Account Security Team. We detected an "
+        "unauthorized sign-in on your account today. To protect your information, please "
+        "verify your identity within 24 hours. Otherwise your account will be suspended "
+        "as a security precaution. Click the secure link below to confirm your details now."
+    )
+    risk = fx.overall_risk_score(text)
+    assert 0.0 <= risk <= 100.0
+    assert risk > 60
