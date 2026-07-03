@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "TooSmooth: AI Phishing Detector",
+  "version": "1.0",
+  "description": "Paste any email or message to detect AI-generated phishing, with explainable feature scores.",
+  "host_permissions": [
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*"
+  ],
+  "action": {
+    "default_title": "TooSmooth",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

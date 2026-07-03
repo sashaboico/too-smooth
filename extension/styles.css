@@ -1,0 +1,210 @@
+/* TooSmooth popup + verdict card. Minimal, Gmail-adjacent look. */
+
+.toosmooth-popup {
+  width: 380px;
+  padding: 14px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: #202124;
+  background: #f8f9fa;
+}
+
+.toosmooth-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.toosmooth-brand-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a73e8;
+}
+.toosmooth-brand-sub {
+  font-size: 11px;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+#ts-input {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  color: #202124;
+  background: #fff;
+}
+#ts-input:focus {
+  outline: none;
+  border-color: #1a73e8;
+}
+
+#ts-analyze {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px 0;
+  border: none;
+  border-radius: 8px;
+  background: #1a73e8;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+#ts-analyze:hover {
+  background: #1765cc;
+}
+
+/* --- verdict card --- */
+.toosmooth-card {
+  border-radius: 8px;
+  margin: 12px 0 0 0;
+  font-size: 13px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  background: #fff;
+}
+
+.toosmooth-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+}
+.toosmooth-title {
+  font-weight: 600;
+}
+.toosmooth-header-green {
+  background: #e6f4ea;
+  border-left: 4px solid #34a853;
+}
+.toosmooth-header-yellow {
+  background: #fef7e0;
+  border-left: 4px solid #fbbc04;
+}
+.toosmooth-header-red {
+  background: #fce8e6;
+  border-left: 4px solid #ea4335;
+}
+
+.toosmooth-dismiss {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  color: #5f6368;
+  cursor: pointer;
+  padding: 0 2px;
+}
+.toosmooth-dismiss:hover {
+  color: #202124;
+}
+
+.toosmooth-body {
+  padding: 10px 14px;
+  background: #fff;
+}
+
+.toosmooth-toggle {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: #1a73e8;
+  cursor: pointer;
+}
+.toosmooth-arrow {
+  display: inline-block;
+  width: 12px;
+}
+
+.toosmooth-breakdown {
+  margin-top: 8px;
+}
+
+.toosmooth-feature {
+  padding: 8px 0;
+  border-top: 1px solid #f1f3f4;
+}
+.toosmooth-feature.toosmooth-top-flag {
+  background: #f8fbff;
+  border-left: 3px solid #1a73e8;
+  padding-left: 8px;
+  margin-left: -8px;
+  border-radius: 0 4px 4px 0;
+}
+
+.toosmooth-feature-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.toosmooth-feature-name {
+  font-weight: 600;
+}
+.toosmooth-top-tag {
+  font-size: 10px;
+  color: #1a73e8;
+  background: #e8f0fe;
+  border-radius: 8px;
+  padding: 1px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.toosmooth-badge {
+  margin-left: auto;
+  font-size: 10px;
+  border-radius: 8px;
+  padding: 1px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.toosmooth-badge-low {
+  background: #e6f4ea;
+  color: #137333;
+}
+.toosmooth-badge-medium {
+  background: #fef7e0;
+  color: #b06000;
+}
+.toosmooth-badge-high {
+  background: #fce8e6;
+  color: #c5221f;
+}
+
+.toosmooth-score-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #f1f3f4;
+  overflow: hidden;
+}
+.toosmooth-score-bar-fill {
+  height: 6px;
+  border-radius: 3px;
+  background: #ea4335;
+}
+
+.toosmooth-reason {
+  margin-top: 5px;
+  color: #3c4043;
+  line-height: 1.4;
+}
+
+.toosmooth-note {
+  padding: 12px 14px;
+  color: #3c4043;
+}
+.toosmooth-offline {
+  padding: 12px 14px;
+  color: #5f6368;
+  background: #f1f3f4;
+  border-left: 4px solid #9aa0a6;
+}
