@@ -89,11 +89,24 @@ def build_gb_pipeline() -> Pipeline:
 
 
 def subsample(df, max_per_class: int, seed: int = RANDOM_STATE):
-    """Down-sample each class to at most ``max_per_class`` rows (keeps all of a small class)."""
+    """Balance the corpus while always keeping every hand-labeled row.
+
+    Corpus rows (the huge ``legitimate`` / ``human_phishing`` classes) are down-sampled
+    to at most ``max_per_class`` each. Hand-labeled rows — the 123 ai_phishing examples
+    AND the modern SaaS legitimate examples — are kept in full, since a few dozen rows
+    dropped into 75k would otherwise be randomly sampled away and never learned.
+    """
+    if "source" in df.columns:
+        corpus = df[df["source"] == "corpus"]
+        hand = df[df["source"] == "hand_labeled"]
+    else:  # backward-compatible if no source column
+        corpus, hand = df, df.iloc[0:0]
+
     parts = [
         g.sample(min(len(g), max_per_class), random_state=seed)
-        for _, g in df.groupby("label")
+        for _, g in corpus.groupby("label")
     ]
+    parts.append(hand)
     # Shuffle so classes are interleaved, then reset the index.
     return pd.concat(parts).sample(frac=1, random_state=seed).reset_index(drop=True)
 
