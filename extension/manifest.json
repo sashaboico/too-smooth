@@ -4,8 +4,7 @@
   "version": "1.0",
   "description": "Paste any email or message to detect AI-generated phishing, with explainable feature scores.",
   "host_permissions": [
-    "http://127.0.0.1:8000/*",
-    "http://localhost:8000/*"
+    "https://too-smooth-production.up.railway.app/*"
   ],
   "action": {
     "default_title": "TooSmooth",

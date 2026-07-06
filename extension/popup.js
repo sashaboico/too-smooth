@@ -1,10 +1,5 @@
 // TooSmooth popup — paste a message, hit /analyze, render the explainable verdict card.
-// Swap API_URL to the deployed Railway URL on Day 10 (and add its host to
-// host_permissions in manifest.json).
-// Use 127.0.0.1 (not "localhost"): the browser may resolve localhost to IPv6 [::1],
-// which misses a uvicorn bound to IPv4 127.0.0.1 (and can collide with other :8000
-// listeners like Docker). 127.0.0.1 forces IPv4 straight to the API.
-const API_URL = "http://127.0.0.1:8000/analyze";
+const API_URL = "https://too-smooth-production.up.railway.app/analyze";
 
 // Human-readable names for the six interpretable features.
 const FEATURE_LABELS = {

@@ -19,7 +19,7 @@
 .toosmooth-brand-name {
   font-size: 16px;
   font-weight: 700;
-  color: #1a73e8;
+  color: #ff5c00;
 }
 .toosmooth-brand-sub {
   font-size: 11px;
@@ -41,7 +41,7 @@
 }
 #ts-input:focus {
   outline: none;
-  border-color: #1a73e8;
+  border-color: #ff5c00;
 }
 
 #ts-analyze {
@@ -50,14 +50,14 @@
   padding: 8px 0;
   border: none;
   border-radius: 8px;
-  background: #1a73e8;
+  background: #ff5c00;
   color: #fff;
   font: inherit;
   font-weight: 600;
   cursor: pointer;
 }
 #ts-analyze:hover {
-  background: #1765cc;
+  background: #e0530a;
 }
 
 /* --- verdict card --- */
@@ -116,7 +116,7 @@
   padding: 0;
   font: inherit;
   font-weight: 600;
-  color: #1a73e8;
+  color: #ff5c00;
   cursor: pointer;
 }
 .toosmooth-arrow {
@@ -133,8 +133,8 @@
   border-top: 1px solid #f1f3f4;
 }
 .toosmooth-feature.toosmooth-top-flag {
-  background: #f8fbff;
-  border-left: 3px solid #1a73e8;
+  background: #fff4ec;
+  border-left: 3px solid #ff5c00;
   padding-left: 8px;
   margin-left: -8px;
   border-radius: 0 4px 4px 0;
@@ -151,8 +151,8 @@
 }
 .toosmooth-top-tag {
   font-size: 10px;
-  color: #1a73e8;
-  background: #e8f0fe;
+  color: #ff5c00;
+  background: #ffe8d9;
   border-radius: 8px;
   padding: 1px 6px;
   text-transform: uppercase;

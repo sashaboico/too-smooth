@@ -1,7 +1,11 @@
 # models/
 
-Trained, serialized TooSmooth classifiers. The `.pkl` files are **not committed**
-(`*.pkl` is gitignored); this README documents how to reproduce them.
+Trained, serialized TooSmooth classifiers. `.pkl` files are gitignored by default, with
+one exception: **`classifier_lr.pkl` is committed** so the Railway deployment has a
+model to load without retraining at deploy time (retraining requires spaCy feature
+extraction over the full dataset, which is too slow to run on every deploy/restart, and
+would otherwise require exposing the private hand-labeled `ai_phishing` examples to the
+build). `classifier_gb.pkl` stays gitignored — it's not the deployed model.
 
 ## Files
 

@@ -14,6 +14,9 @@ env/
 # Models & artifacts
 *.joblib
 *.pkl
+# Exception: the deployed model is committed so Railway can serve it without
+# retraining (and without needing the private hand-labeled data) at deploy time.
+!models/classifier_lr.pkl
 
 # Data — keep the folders, ignore the contents (may contain sensitive samples)
 data/raw/*
