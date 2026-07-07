@@ -43,8 +43,8 @@ Open source: github.com/sashaboico/too-smooth
 ## Assets checklist
 - [x] Promotional tile 440x280 — store-assets/promo_tile_440x280.png
 - [x] Icons 16/48/128 — extension/icons/
-- [ ] Screenshot (1280x800 or 640x400) — capture yourself: open the popup, paste a
-      sample phishing message, click Analyze, screenshot the verdict card. This needs
-      a live interaction so it's most accurate coming from your own browser.
+- [x] Screenshots — store-assets/screenshot_1280x800_verdict.png (verdict card over a
+      real WIRED newsletter, Gmail blurred in the background) and
+      store-assets/screenshot_640x400_empty_state.png (empty popup state)
 - [ ] Privacy policy URL — https://sashaboico.github.io/too-smooth/privacy-policy.html
       (live once GitHub Pages is enabled — see Track C)
